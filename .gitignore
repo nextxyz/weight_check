@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# macOS
+.DS_Store
+
+# 런타임 생성물 (커밋하지 않음)
+weights.db
+data/
+
+# 도커 이미지 추출물
+*.tar.gz
+
+# 자체 서명 인증서 (HTTPS 테스트용)
+*.pem
+
+# 에디터/도구
+.claude/
