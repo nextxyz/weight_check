@@ -129,3 +129,23 @@ async def remove_measurement(measurement_id: int):
 @app.get("/")
 async def index():
     return FileResponse(STATIC_DIR / "index.html")
+
+
+# 브라우저/OS가 루트 경로로 요청하는 아이콘·매니페스트 파일 서빙.
+# (화이트리스트 방식이라 임의 경로 노출 위험 없음)
+_STATIC_ASSETS = {
+    "favicon.ico",
+    "favicon-16x16.png",
+    "favicon-32x32.png",
+    "apple-touch-icon.png",
+    "android-chrome-192x192.png",
+    "android-chrome-512x512.png",
+    "site.webmanifest",
+}
+
+
+@app.get("/{filename}")
+async def static_asset(filename: str):
+    if filename not in _STATIC_ASSETS:
+        raise HTTPException(404, "찾을 수 없습니다.")
+    return FileResponse(STATIC_DIR / filename)
